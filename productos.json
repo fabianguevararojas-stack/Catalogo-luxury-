@@ -1,0 +1,30 @@
+[
+  {
+    "descripcion": "Vestido midi floral, manga larga",
+    "precio": 285,
+    "categoria": "Vestidos",
+    "foto": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNzUwIiB2aWV3Qm94PSIwIDAgNjAwIDc1MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI3NTAiIGZpbGw9IiMyQTI0MjAiLz48dGV4dCB4PSIzMDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjM0IiBmaWxsPSIjQzk5NzJFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5WZXN0aWRvczwvdGV4dD48dGV4dCB4PSIzMDAiIHk9IjQzMCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRURFNkQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBvcGFjaXR5PSIwLjYiPmZvdG8gZGUgbXVlc3RyYTwvdGV4dD48L3N2Zz4=",
+    "fecha": 1788880661783
+  },
+  {
+    "descripcion": "Sandalias de tacón bajo, tono nude",
+    "precio": 195,
+    "categoria": "Calzado",
+    "foto": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNzUwIiB2aWV3Qm94PSIwIDAgNjAwIDc1MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI3NTAiIGZpbGw9IiMyNDIwMTkiLz48dGV4dCB4PSIzMDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjM0IiBmaWxsPSIjQzk5NzJFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DYWx6YWRvPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iNDMwIiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNFREU2RDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIG9wYWNpdHk9IjAuNiI+Zm90byBkZSBtdWVzdHJhPC90ZXh0Pjwvc3ZnPg==",
+    "fecha": 1788880660783
+  },
+  {
+    "descripcion": "Pantalón palazzo, corte fluido",
+    "precio": 220,
+    "categoria": "Pantalones",
+    "foto": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNzUwIiB2aWV3Qm94PSIwIDAgNjAwIDc1MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI3NTAiIGZpbGw9IiMyRTI2MjAiLz48dGV4dCB4PSIzMDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjM0IiBmaWxsPSIjQzk5NzJFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QYW50YWxvbmVzPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iNDMwIiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNFREU2RDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIG9wYWNpdHk9IjAuNiI+Zm90byBkZSBtdWVzdHJhPC90ZXh0Pjwvc3ZnPg==",
+    "fecha": 1788880659783
+  },
+  {
+    "descripcion": "Perfume floral amaderado, 50ml",
+    "precio": 340,
+    "categoria": "Perfumes",
+    "foto": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNzUwIiB2aWV3Qm94PSIwIDAgNjAwIDc1MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI3NTAiIGZpbGw9IiMyMjFEMTgiLz48dGV4dCB4PSIzMDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjM0IiBmaWxsPSIjQzk5NzJFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QZXJmdW1lczwvdGV4dD48dGV4dCB4PSIzMDAiIHk9IjQzMCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRURFNkQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBvcGFjaXR5PSIwLjYiPmZvdG8gZGUgbXVlc3RyYTwvdGV4dD48L3N2Zz4=",
+    "fecha": 1788880658783
+  }
+]
