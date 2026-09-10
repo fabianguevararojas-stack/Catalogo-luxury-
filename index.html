@@ -6,6 +6,8 @@
 <title>Luxury – Moda y Estilo</title>
 <meta name="description" content="Catálogo Luxury - Moda y Estilo">
 <meta name="theme-color" content="#1D1C1A">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.png">
 <style>
   :root {
     --color-bg: #1D1C1A;
@@ -79,82 +81,90 @@
   </main>
   <p class="pie">Luxury &middot; Moda y Estilo</p>
 </div>
-<script>
-(function () {
-  // Este catálogo es de SOLO LECTURA: lee productos.json (el archivo
-  // que se exporta desde la app privada) y solo muestra, no edita.
-  let productos = [];
-  let categorias = [];
-  let categoriaActiva = 'Todas';
+<script type="module">
+// Catálogo de SOLO LECTURA: lee en vivo desde Firestore (misma base de
+// datos donde se publica desde la app privada). No hace falta iniciar
+// sesión para ver — eso lo permiten las reglas de seguridad del proyecto.
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js';
+import { getFirestore, collection, onSnapshot } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js';
 
-  function escaparHTML(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
-  function formatearPrecio(valor) {
-    return 'Q' + Number(valor).toFixed(2);
-  }
+const firebaseConfig = {
+  apiKey: "AIzaSyCyOFNMosBH-Rxr1ivqVOVymx6BHti0HFU",
+  authDomain: "catalogo-luxury-f0fa4.firebaseapp.com",
+  projectId: "catalogo-luxury-f0fa4",
+  storageBucket: "catalogo-luxury-f0fa4.firebasestorage.app",
+  messagingSenderId: "954813705120",
+  appId: "1:954813705120:web:9c12a34b6edfc138cd92c5"
+};
 
-  function renderPestanas() {
-    const cont = document.getElementById('tabsCategorias');
-    if (categorias.length === 0) { cont.style.display = 'none'; return; }
-    cont.style.display = 'flex';
-    const todas = ['Todas'].concat(categorias);
-    cont.innerHTML = todas.map((cat) => {
-      const clase = cat === categoriaActiva ? 'tab activa' : 'tab';
-      return '<button class="' + clase + '" data-cat="' + escaparHTML(cat) + '">' + escaparHTML(cat) + '</button>';
-    }).join('');
-    cont.querySelectorAll('.tab').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        categoriaActiva = btn.dataset.cat;
-        renderPestanas();
-        renderGrid();
-      });
-    });
-  }
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
 
-  function renderGrid() {
-    const grid = document.getElementById('grid');
-    const filtrados = categoriaActiva === 'Todas'
-      ? productos
-      : productos.filter((p) => p.categoria === categoriaActiva);
+let productos = [];
+let categorias = [];
+let categoriaActiva = 'Todas';
 
-    if (filtrados.length === 0) {
-      grid.innerHTML = '<div class="vacio"><p>Todavía no hay productos aquí.</p></div>';
-      return;
-    }
+function escaparHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+function formatearPrecio(valor) {
+  return 'Q' + Number(valor).toFixed(2);
+}
 
-    grid.innerHTML = filtrados
-      .slice()
-      .sort((a, b) => (b.fecha || 0) - (a.fecha || 0))
-      .map((p) => (
-        '<article class="tarjeta">'
-        + '<img src="' + p.foto + '" alt="' + escaparHTML(p.descripcion) + '" loading="lazy">'
-        + '<div class="info">'
-        + '<span class="categoria-tag">' + escaparHTML(p.categoria) + '</span>'
-        + '<p class="descripcion">' + escaparHTML(p.descripcion) + '</p>'
-        + '<div class="fila-inferior"><span class="precio">' + formatearPrecio(p.precio) + '</span></div>'
-        + '</div></article>'
-      )).join('');
-  }
-
-  async function iniciar() {
-    try {
-      const resp = await fetch('productos.json', { cache: 'no-store' });
-      if (!resp.ok) throw new Error('no encontrado');
-      productos = await resp.json();
-      categorias = Array.from(new Set(productos.map((p) => p.categoria))).sort();
+function renderPestanas() {
+  const cont = document.getElementById('tabsCategorias');
+  if (categorias.length === 0) { cont.style.display = 'none'; return; }
+  cont.style.display = 'flex';
+  const todas = ['Todas'].concat(categorias);
+  cont.innerHTML = todas.map((cat) => {
+    const clase = cat === categoriaActiva ? 'tab activa' : 'tab';
+    return '<button class="' + clase + '" data-cat="' + escaparHTML(cat) + '">' + escaparHTML(cat) + '</button>';
+  }).join('');
+  cont.querySelectorAll('.tab').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      categoriaActiva = btn.dataset.cat;
       renderPestanas();
       renderGrid();
-    } catch (err) {
-      document.getElementById('grid').innerHTML =
-        '<div class="vacio"><p>No se pudo cargar el catálogo.<br>Verifica que "productos.json" esté publicado junto a esta página.</p></div>';
-    }
+    });
+  });
+}
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  const filtrados = categoriaActiva === 'Todas'
+    ? productos
+    : productos.filter((p) => p.categoria === categoriaActiva);
+
+  if (filtrados.length === 0) {
+    grid.innerHTML = '<div class="vacio"><p>Todavía no hay productos aquí.</p></div>';
+    return;
   }
 
-  iniciar();
-})();
+  grid.innerHTML = filtrados
+    .slice()
+    .sort((a, b) => (b.fecha || 0) - (a.fecha || 0))
+    .map((p) => (
+      '<article class="tarjeta">'
+      + '<img src="' + p.foto + '" alt="' + escaparHTML(p.descripcion) + '" loading="lazy">'
+      + '<div class="info">'
+      + '<span class="categoria-tag">' + escaparHTML(p.categoria) + '</span>'
+      + '<p class="descripcion">' + escaparHTML(p.descripcion) + '</p>'
+      + '<div class="fila-inferior"><span class="precio">' + formatearPrecio(p.precio) + '</span></div>'
+      + '</div></article>'
+    )).join('');
+}
+
+onSnapshot(collection(db, 'productos'), (snapshot) => {
+  productos = snapshot.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+  categorias = Array.from(new Set(productos.map((p) => p.categoria))).sort();
+  renderPestanas();
+  renderGrid();
+}, () => {
+  document.getElementById('grid').innerHTML =
+    '<div class="vacio"><p>No se pudo cargar el catálogo. Intenta de nuevo en un momento.</p></div>';
+});
 </script>
 </body>
 </html>
