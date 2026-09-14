@@ -49,7 +49,28 @@
 
   .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
   .tarjeta { background: var(--color-card); border: 1px solid var(--color-line); border-radius: 4px; overflow: hidden; }
-  .tarjeta img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+  .tarjeta img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; cursor: pointer; }
+
+  .visor-foto {
+    position: fixed; inset: 0; background: rgba(10, 9, 8, 0.94);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; z-index: 200;
+  }
+  .visor-foto.oculto { display: none; }
+  .visor-foto img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
+  .cerrar-visor {
+    position: absolute;
+    top: calc(env(safe-area-inset-top) + 16px);
+    right: 20px;
+    width: 40px; height: 40px;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    border-radius: 50%;
+    color: var(--color-ink);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
   .tarjeta .info { padding: 14px 16px 16px; }
   .categoria-tag { font-size: 12px; color: var(--color-primary-light); }
   .descripcion { margin: 6px 0 12px; font-size: 15px; line-height: 1.4; }
@@ -81,6 +102,12 @@
   </main>
   <p class="pie">Luxury &middot; Moda y Estilo</p>
 </div>
+
+<div id="visorFoto" class="visor-foto oculto">
+  <button id="cerrarVisor" class="cerrar-visor" aria-label="Cerrar">&times;</button>
+  <img id="visorFotoImg" src="" alt="">
+</div>
+
 <script type="module">
 // Catálogo de SOLO LECTURA: lee en vivo desde Firestore (misma base de
 // datos donde se publica desde la app privada). No hace falta iniciar
@@ -154,7 +181,25 @@ function renderGrid() {
       + '<div class="fila-inferior"><span class="precio">' + formatearPrecio(p.precio) + '</span></div>'
       + '</div></article>'
     )).join('');
+
+  grid.querySelectorAll('.tarjeta img').forEach((img) => {
+    img.addEventListener('click', () => abrirVisor(img.src, img.alt));
+  });
 }
+
+function abrirVisor(src, alt) {
+  document.getElementById('visorFotoImg').src = src;
+  document.getElementById('visorFotoImg').alt = alt || '';
+  document.getElementById('visorFoto').classList.remove('oculto');
+}
+function cerrarVisor() {
+  document.getElementById('visorFoto').classList.add('oculto');
+  document.getElementById('visorFotoImg').src = '';
+}
+document.getElementById('cerrarVisor').addEventListener('click', cerrarVisor);
+document.getElementById('visorFoto').addEventListener('click', (e) => {
+  if (e.target.id === 'visorFoto') cerrarVisor();
+});
 
 onSnapshot(collection(db, 'productos'), (snapshot) => {
   productos = snapshot.docs.map((d) => Object.assign({ id: d.id }, d.data()));
